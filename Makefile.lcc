@@ -1,5 +1,5 @@
 # Wedit Makefile for project ansicStl
-SRCDIR=.
+SRCDIR=src/
 CFLAGS=-I. -O -A  -p6 -ansic  -g2
 CC=lcc.exe
 LINKER=lcclnk.exe

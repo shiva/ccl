@@ -1,5 +1,5 @@
 # Wedit Makefile for project ansicStl
-SRCDIR=.
+SRCDIR=src
 CFLAGS=-I. -Zi -W4 -D_CRT_SECURE_NO_WARNINGS -c
 CC=cl.exe
 LINKER=link.exe
