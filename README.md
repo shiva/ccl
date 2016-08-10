@@ -3,8 +3,7 @@
 [![Build Status](https://travis-ci.org/shiva/ccl.svg?branch=cmake-support)](https://travis-ci.org/shiva/ccl)
 [![Gitter](https://badges.gitter.im/shiva/ccl.svg)](https://gitter.im/shiva/ccl?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Jacob Navia created a [container library for C][0]. The library provides a framework for containers in C, and implements several common and some uncommon container types. 
-This repo is forked from Jacob Navia's [repo][0] (which seems to be have no recent activity). There is extensive documentation provided to describe the [design of libccl][1] and it's usage.
+Jacob Navia created a [container library for C][0]. The library provides a framework for containers in C, and implements several common and some uncommon container types.  This repo is forked from Jacob Navia's [repo][0] to continue implementing a portable build system using CMake and to write cpputest based tests. There is extensive documentation provided to describe the [design of libccl][1].
 
 This branch contains a version of libccl built using cmake. The goal is to provide a set of unit-tests and a build system that is cross-platform capable of compiling libccl to multiple platforms. 
 A git submodule is used to provide some useful cmake modules. Currently only *nix variants and MacOSX is supported.
@@ -17,6 +16,8 @@ To compile ccl, checkout this repo, initialize submodules and build, by executin
     # mkdir build
     # cd build
     # cmake ../
+
+Currently, compilation works on Linux and OSX. Support for windows is underway.
 
 #### Generating Eclipse project
 
