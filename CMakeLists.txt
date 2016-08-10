@@ -2,16 +2,16 @@ cmake_minimum_required(VERSION 2.6)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules")
 
 project(ccl)
-
 set(CMAKE_ECLIPSE_VERSION 4.5.2)
+include(PlatformSpecificSupport)
 #include(UseCppUTest)
-#add_definitions(-std=c99)
 
+if(CMAKE_COMPILER_IS_GNUCXX)
+    set(CMAKE_C_FLAGS "-Wall -Wno-pointer-sign -Werror")
+    add_definitions(-DUNIX)
+endif()
 
-#set(CMAKE_C_FLAGS "-Wall -Wno-pointer-sign -Werror")
-add_definitions(-DUNIX)
 enable_language(C)
-
 #enable_unit_testing()
 
 # The version number
