@@ -1,4 +1,5 @@
 # Wedit Makefile for project ansicStl
+INCLUDEDIR=include
 SRCDIR=src
 CFLAGS=-I. -Zi -W4 -D_CRT_SECURE_NO_WARNINGS -c
 CC=cl.exe
@@ -76,7 +77,7 @@ generic.obj:	generic.c containers.h
 
 # Build vector.c
 ARRAYLIST_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -99,7 +100,7 @@ BITSTRINGS_C=\
 	C:\lcc\include\stdlib.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\string.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -117,7 +118,7 @@ BLOOM_C=\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdio.h\
 	C:\lcc\include\safelib.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -130,7 +131,7 @@ bloom.obj: $(BLOOM_C) $(SRCDIR)\bloom.c
 
 # Build error.c
 CONTAINERERROR_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -214,7 +215,7 @@ fgetline.obj: $(FGETLINE_C) $(SRCDIR)\fgetline.c
 
 # Build hashtable.c
 HASHTABLE_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -229,7 +230,7 @@ hashtable.obj: $(HASHTABLE_C) $(SRCDIR)\hashtable.c
 
 # Build heap.c
 HEAP_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -244,7 +245,7 @@ heap.obj: $(HEAP_C) $(SRCDIR)\heap.c
 
 # Build list.c
 LIST_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -259,7 +260,7 @@ list.obj: $(LIST_C) $(SRCDIR)\list.c
 
 # Build malloc_debug.c
 MALLOC_DEBUG_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -276,7 +277,7 @@ malloc_debug.obj: $(MALLOC_DEBUG_C) $(SRCDIR)\malloc_debug.c
 POOL_C=\
 	C:\lcc\include\inttypes.h\
 	C:\lcc\include\stdint.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -291,7 +292,7 @@ pool.obj: $(POOL_C) $(SRCDIR)\pool.c
 
 # Build pooldebug.c
 POOLDEBUG_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -313,7 +314,7 @@ QSORTEX_C=\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stdlib.h\
 	C:\lcc\include\stddef.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -331,14 +332,14 @@ REDBLACKTREE_C=\
 	C:\lcc\include\safelib.h\
 	C:\lcc\include\stdlib.h\
 	C:\lcc\include\stddef.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
 	C:\lcc\include\stdio.h\
 	C:\lcc\include\stdint.h\
 	C:\lcc\include\limits.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 
 redblacktree.obj: $(REDBLACKTREE_C) $(SRCDIR)\redblacktree.c
 	$(CC) -c $(CFLAGS) $(SRCDIR)\redblacktree.c
@@ -349,14 +350,14 @@ SCAPEGOAT_C=\
 	C:\lcc\include\safelib.h\
 	C:\lcc\include\stdlib.h\
 	C:\lcc\include\stddef.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
 	C:\lcc\include\stdio.h\
 	C:\lcc\include\stdint.h\
 	C:\lcc\include\limits.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 
 scapegoat.obj: $(SCAPEGOAT_C) $(SRCDIR)\scapegoat.c
 	$(CC) -c $(CFLAGS) $(SRCDIR)\scapegoat.c
@@ -367,7 +368,7 @@ SEARCHTREE_C=\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stdlib.h\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -381,7 +382,7 @@ searchtree.obj: $(SEARCHTREE_C) $(SRCDIR)\searchtree.c
 
 # Build strcollection.c
 STRCOLLECTION_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\
@@ -410,7 +411,7 @@ iMask.obj:	iMask.c containers.h
 
 # Build test.c
 TEST_C=\
-	$(SRCDIR)\containers.h\
+	$(INCLUDEDIR)\containers.h\
 	C:\lcc\include\string.h\
 	C:\lcc\include\stddef.h\
 	C:\lcc\include\stdlib.h\

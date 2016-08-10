@@ -8,7 +8,7 @@ set(CMAKE_ECLIPSE_VERSION 4.5.2)
 #add_definitions(-std=c99)
 
 
-set(CMAKE_C_FLAGS "-Wall -Wno-pointer-sign -Werror")
+#set(CMAKE_C_FLAGS "-Wall -Wno-pointer-sign -Werror")
 add_definitions(-DUNIX)
 enable_language(C)
 
@@ -91,6 +91,4 @@ target_link_libraries(dotest ccl m)
 install(FILES ${CCL_HEADERS} DESTINATION include/ccl)
 install(TARGETS ccl DESTINATION lib)
 install(TARGETS dotest DESTINATION bin)
-
-
 

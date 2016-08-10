@@ -1,4 +1,5 @@
 # Wedit Makefile for project ansicStl
+INCLUDEDIR=include
 SRCDIR=src
 #CFLAGS=-I. -O -A  -p6 -ansic  -g2
 # Change below lcc64 to have a 64 bit version
@@ -181,19 +182,22 @@ intarray.obj:	$(HEADERS) intarray.c
 	$(CC) $(CFLAGS) $(SRCDIR)\intarray.c
 
 iMask.obj:	iMask.c $(HEADERS)
-	$(CC) $(CFLAGS) iMask.c
+	$(CC) $(CFLAGS) $(SRCDIR)\iMask.c
+
+buffer.obj:	$(SRCDIR)\buffer.c $(INCLUDEDIR)\containers.h
+	$(CC) -c $(CFLAGS) $(SRCDIR)\buffer.c
 
 wstrcollection.obj:	wstrcollection.c strcollectiongen.c containers.h ccl_internal.h
-	$(CC) $(CFLAGS) wstrcollection.c
+	$(CC) $(CFLAGS) $(SRCDIR)\wstrcollection.c
 
 intlist.obj: intlist.c intlist.h ccl_internal.h containers.h $(LIST_GENERIC)
-	$(CC) $(CFLAGS) intlist.c
+	$(CC) $(CFLAGS) $(SRCDIR)\intlist.c
 
 doublelist.obj: doublelist.c doublelist.h ccl_internal.h containers.h $(LIST_GENERIC)
-	$(CC) $(CFLAGS) doublelist.c
+	$(CC) $(CFLAGS) $(SRCDIR)\doublelist.c
 
 longlonglist.obj: longlonglist.c longlonglist.h ccl_internal.h containers.h $(LIST_GENERIC)
-	$(CC) $(CFLAGS) longlonglist.c
+	$(CC) $(CFLAGS) $(SRCDIR)\longlonglist.c
 
 
 vectorsize_t.obj:	vectorsize_t.c vectorgen.h vectorgen.c containers.h ccl_internals.h
