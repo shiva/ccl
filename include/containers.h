@@ -1,5 +1,8 @@
 #ifndef __containers_h__
 #define __containers_h__
+
+#include "ccl_export.h"
+
 #include <string.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -72,7 +75,7 @@ typedef struct tagError {
     int (*AddError)(int code,char *message);
 } ErrorInterface;
 
-extern ErrorInterface iError;
+extern CCL_EXPORT ErrorInterface iError;
 /************************************************************************** */
 /*                                                                          */
 /*                          Memory allocation object                        */
@@ -84,14 +87,14 @@ typedef struct tagAllocator {
     void *(*realloc)(void *,size_t);/* Function to resize a block of memory */
     void *(*calloc)(size_t,size_t);
 } ContainerAllocator;
-extern ContainerAllocator * CurrentAllocator;
-extern ContainerAllocator iDebugMalloc;
+extern CCL_EXPORT ContainerAllocator * CurrentAllocator;
+extern CCL_EXPORT ContainerAllocator iDebugMalloc;
 
 typedef struct tagAllocatorInterface {
     ContainerAllocator *(*Change)(ContainerAllocator *newAllocator);
     ContainerAllocator *(*GetCurrent)(void);
 } AllocatorInterface;
-extern AllocatorInterface iAllocator;
+extern CCL_EXPORT AllocatorInterface iAllocator;
 /****************************************************************************
  *                   Masks interface                                        *
  ****************************************************************************/
@@ -111,7 +114,7 @@ typedef struct tagMaskInterface {
     size_t (*PopulationCount)(const Mask *m);
 } MaskInterface;
 
-extern MaskInterface iMask;
+extern CCL_EXPORT MaskInterface iMask;
 /************************************************************************** */
 /*                         Iterator objects                                 */
 /************************************************************************** */
@@ -160,7 +163,7 @@ typedef struct _HeapAllocatorInterface {
     int (*DeleteIterator)(Iterator *it);
 } HeapInterface;
 
-extern HeapInterface iHeap;
+extern CCL_EXPORT HeapInterface iHeap;
 
 /************************************************************************** */
 /*                                                                          */
@@ -176,7 +179,7 @@ typedef struct tagPoolAllocatorInterface {
     void   (*Finalize)(Pool *);
 } PoolAllocatorInterface;
 
-extern PoolAllocatorInterface iPool;
+extern CCL_EXPORT PoolAllocatorInterface iPool;
 
 typedef struct tagPoolAllocatorDebugInterface {
     Pool  *(*Create)(const char *file_line);
@@ -189,7 +192,7 @@ typedef struct tagPoolAllocatorDebugInterface {
     size_t (*Sizeof)(Pool *);
 } PoolAllocatorDebugInterface;
 
-extern PoolAllocatorDebugInterface iPoolDebug;
+extern CCL_EXPORT PoolAllocatorDebugInterface iPoolDebug;
 /************************************************************************** */
 /*                                                                          */
 /*                            Generic containers                            */
@@ -216,7 +219,7 @@ typedef struct tagGenericContainerInterface {
     size_t (*SizeofIterator)(const GenericContainer *Gen);
     int (*Save)(const GenericContainer *Gen,FILE *stream, SaveFunction saveFn,void *arg);
 } GenericContainerInterface;
-extern GenericContainerInterface iGeneric;
+extern CCL_EXPORT GenericContainerInterface iGeneric;
 
 /************************************************************************** */
 /*                                                                          */
@@ -254,7 +257,7 @@ typedef struct tagSequentialContainerInterface {
     int (*IndexOf)(const SequentialContainer *SC,const void *ElementToFind,void *args,size_t *result);
     int (*Append)(SequentialContainer * SC1,SequentialContainer * SC2);
 } SequentialContainerInterface;
-extern SequentialContainerInterface iSequentialContainer;
+extern CCL_EXPORT SequentialContainerInterface iSequentialContainer;
 
 /************************************************************************** */
 /*                                                                          */
@@ -268,7 +271,7 @@ typedef struct tagAssociativeContainerInterface {
     void *(*GetElement)(const AssociativeContainer *SC,const void *Key);
     int (*Replace)(AssociativeContainer *SC, const void *Key, const void *element);
 } AssociativeContainerInterface;
-extern AssociativeContainerInterface iAssociativeContainer;
+extern CCL_EXPORT AssociativeContainerInterface iAssociativeContainer;
 /************************************************************************** */
 /*                                                                          */
 /*                            Stream Buffers                                */
@@ -292,7 +295,7 @@ typedef struct tagStreamBufferInterface {
     int (*ReadFromFile)(StreamBuffer *b,FILE *f);
     int (*WriteToFile)(StreamBuffer *b,FILE *f);
 } StreamBufferInterface;
-extern StreamBufferInterface iStreamBuffer;
+extern CCL_EXPORT StreamBufferInterface iStreamBuffer;
 /************************************************************************** */
 /*                                                                          */
 /*                            circular buffers                              */
@@ -313,7 +316,7 @@ typedef struct tagCircularBufferInterface {
     DestructorFunction(*SetDestructor)(CircularBuffer *cb,
                                        DestructorFunction fn);
 } CircularBufferInterface;
-extern CircularBufferInterface iCircularBuffer;
+extern CCL_EXPORT CircularBufferInterface iCircularBuffer;
 /************************************************************************** */
 /*                                                                          */
 /*                            String Collections                            */
@@ -398,7 +401,7 @@ typedef struct tagstrCollection {
     /*    unsigned char *(*Find)(strCollection *SC,unsigned char *str,CompareInfo *ci); */
 } strCollectionInterface;
 
-extern strCollectionInterface istrCollection;
+extern CCL_EXPORT strCollectionInterface istrCollection;
 
 /************************************************************************** */
 /*                                                                          */
@@ -483,7 +486,7 @@ typedef struct tagWstrCollection {
 /*    wchar_t *Find(WstrCollection *SC,wchar_t *data,CompareInfo *ci); */
 } WstrCollectionInterface;
 
-extern WstrCollectionInterface iWstrCollection;
+extern CCL_EXPORT WstrCollectionInterface iWstrCollection;
 
 /* -------------------------------------------------------------------------
  * LIST Interface                                                           *
@@ -559,7 +562,7 @@ typedef struct tagList {
     List *(*SplitAfter)(List *l, ListElement *pt);
 } ListInterface;
 
-extern ListInterface iList;
+extern CCL_EXPORT ListInterface iList;
 
 #include "stringlist.h"
 #include "wstringlist.h"
@@ -582,7 +585,7 @@ typedef struct tagQueueInterface {
     List *(*GetData)(Queue *q);
 } QueueInterface;
 
-extern QueueInterface iQueue;
+extern CCL_EXPORT QueueInterface iQueue;
 /* -------------------------------------------------------------------
  *                      PRIORITY  QUEUES
  * -------------------------------------------------------------------*/
@@ -606,7 +609,7 @@ typedef struct tagPQueueInterface {
     /*  int (*Replace)(PQueue *src,intptr_t key,void *data); */
 } PQueueInterface;
 
-extern PQueueInterface iPQueue;
+extern CCL_EXPORT PQueueInterface iPQueue;
 
 /* --------------------------------------------------------------------
  *                           Double Ended QUEues                      *
@@ -645,7 +648,7 @@ typedef struct tagDequeInterface {
     DestructorFunction (*SetDestructor)(Deque *Q,DestructorFunction fn);
 } DequeInterface;
 
-extern DequeInterface iDeque;
+extern CCL_EXPORT DequeInterface iDeque;
 
 /* ------------------------------------------------------------------------
  * Double linked list interface                                            *
@@ -725,7 +728,7 @@ typedef struct tagDlist {
     Dlist *(*SplitAfter)(Dlist *l, DlistElement *pt);
 } DlistInterface;
 
-extern DlistInterface iDlist;
+extern CCL_EXPORT DlistInterface iDlist;
 
 /****************************************************************************
  *           Vectors                                                        *
@@ -804,7 +807,7 @@ typedef struct tagVector {
     int (*Reserve)(Vector *src,size_t newCapacity);
 } VectorInterface;
 
-extern VectorInterface iVector;
+extern CCL_EXPORT VectorInterface iVector;
 
 #include "valarray.h"
 typedef struct _Dictionary Dictionary;
@@ -854,7 +857,7 @@ typedef struct tagDictionary {
     double (*GetLoadFactor)(Dictionary *d);
 } DictionaryInterface;
 
-extern DictionaryInterface iDictionary;
+extern CCL_EXPORT DictionaryInterface iDictionary;
 
 typedef struct _WDictionary WDictionary;
 typedef struct tagWDictionary {
@@ -902,7 +905,7 @@ typedef struct tagWDictionary {
     WHashFunction (*SetHashFunction)(WDictionary *d,WHashFunction newFn);
     double (*GetLoadFactor)(WDictionary *d);
 } WDictionaryInterface;
-extern WDictionaryInterface iWDictionary;
+extern CCL_EXPORT WDictionaryInterface iWDictionary;
 
 /* ----------------------------------Hash table interface -----------------------*/
 typedef struct _HashTable HashTable;
@@ -940,7 +943,7 @@ typedef struct tagHashTable {
     DestructorFunction (*SetDestructor)(HashTable *v,DestructorFunction fn);
 } HashTableInterface;
 
-extern HashTableInterface iHashTable;
+extern CCL_EXPORT HashTableInterface iHashTable;
 void qsortEx(void *base, size_t num, size_t width,CompareFunction cmp, CompareInfo *ExtraArgs);
 
 /* ---------------------------------------------------------------------------
@@ -972,7 +975,7 @@ typedef struct tagBinarySearchTreeInterface {
     DestructorFunction (*SetDestructor)(BinarySearchTree *v,DestructorFunction fn);
 } BinarySearchTreeInterface;
 
-extern BinarySearchTreeInterface iBinarySearchTree;
+extern CCL_EXPORT BinarySearchTreeInterface iBinarySearchTree;
 /* -------------------------------------------------------------------------------------
  *                                                                                     *
  *                                Red Black trees                                      *
@@ -1002,7 +1005,7 @@ typedef struct tagRedBlackTreeInterface {
     DestructorFunction (*SetDestructor)(RedBlackTree *v,DestructorFunction fn);
 } RedBlackTreeInterface;
 
-extern RedBlackTreeInterface iRedBlackTree;
+extern CCL_EXPORT RedBlackTreeInterface iRedBlackTree;
 /* -------------------------------------------------------------------------------------
  *                                                                                     *
  *                            Balanced Binary trees                                    *
@@ -1043,7 +1046,7 @@ typedef struct tagTreeMapInterface {
     
 } TreeMapInterface;
 
-extern TreeMapInterface iTreeMap;
+extern CCL_EXPORT TreeMapInterface iTreeMap;
 /* -------------------------------------------------------------------------------------
  *                                                                                     *
  *                            Bit strings                                              *
@@ -1122,7 +1125,7 @@ typedef struct tagBitString {
     const ContainerAllocator *(*GetAllocator)(const BitString *b);
 } BitStringInterface;
 
-extern BitStringInterface iBitString;
+extern CCL_EXPORT BitStringInterface iBitString;
 
 /* --------------------------------------------------------------------------
  *                                                                          *
@@ -1138,7 +1141,7 @@ typedef struct tagBloomFilterInterface {
     int (*Clear)(BloomFilter *b);
     int (*Finalize)(BloomFilter *b);
 } BloomFilterInterface;
-extern BloomFilterInterface iBloomFilter;
+extern CCL_EXPORT BloomFilterInterface iBloomFilter;
 
 /* --------------------------------------------------------------------------
  *                                                                          *
@@ -1156,7 +1159,7 @@ typedef struct tagSuffixTreeInterface {
     int (*Apply)(SuffixTree *tree, int(*Applyfn)(void *,void *),void *arg);
     size_t (*Sizeof)(SuffixTree *tree);
 } SuffixTreeInterface;
-extern SuffixTreeInterface iSuffixTree;
+extern CCL_EXPORT SuffixTreeInterface iSuffixTree;
 
 /************************************************************************** */
 /*                                                                          */
@@ -1190,5 +1193,5 @@ typedef struct tagObserverInterface {
     int (*Notify)(const void *ObservedObject,unsigned operation,const void *ExtraInfo1,const void *ExtraInfo2);
     size_t (*Unsubscribe)(void *ObservedObject,ObserverFunction callback);
 } ObserverInterface;
-extern ObserverInterface iObserver;
+extern CCL_EXPORT ObserverInterface iObserver;
 #endif

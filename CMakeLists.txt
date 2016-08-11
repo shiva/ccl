@@ -3,8 +3,15 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules")
 
 project(ccl)
 set(CMAKE_ECLIPSE_VERSION 4.5.2)
+
 include(PlatformSpecificSupport)
 #include(UseCppUTest)
+
+# Export no symbols by default (if the compiler supports it).
+# This makes e.g. GCC's "visibility behavior" consistent with MSVC's. 
+# On Windows/MSVC this is a noop.
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_C_FLAGS "-Wall -Wno-pointer-sign -Werror")
@@ -12,6 +19,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 enable_language(C)
+
 #enable_unit_testing()
 
 # The version number
@@ -24,6 +32,7 @@ set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
 include_directories(include)
+include_directories(${PROJECT_BINARY_DIR}) # for generated headers
 
 set(CCL_SOURCES
     src/bitstrings.c
@@ -82,13 +91,15 @@ set(CCL_HEADERS
     include/containers.h
     )
 
+include(GenerateExportHeader)
+
 add_library(ccl SHARED ${CCL_SOURCES})
+GENERATE_EXPORT_HEADER(ccl)
 set_target_properties(ccl PROPERTIES SOVERSION ${VERSION_MAJOR} VERSION ${VERSION_STRING})
 
 add_executable(dotest tests/test.c)
-target_link_libraries(dotest ccl m)
+target_link_libraries(dotest ccl)
 
-install(FILES ${CCL_HEADERS} DESTINATION include/ccl)
+install(FILES ${CCL_HEADERS} ${PROJECT_BINARY_DIR}/ccl_export.h DESTINATION include/ccl)
 install(TARGETS ccl DESTINATION lib)
 install(TARGETS dotest DESTINATION bin)
-
