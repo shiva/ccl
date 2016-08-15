@@ -1,6 +1,7 @@
 # libccl : A container library for C
 
-[![Build Status](https://travis-ci.org/shiva/ccl.svg?branch=cmake-support)](https://travis-ci.org/shiva/ccl)
+[![Travis Build Status](https://travis-ci.org/shiva/ccl.svg?branch=cmake-support)](https://travis-ci.org/shiva/ccl)
+[![Appveyor Build status](https://ci.appveyor.com/api/projects/status/as58vdw92g1ka6gf?svg=true)](https://ci.appveyor.com/project/shiva/ccl)
 [![Gitter](https://badges.gitter.im/shiva/ccl.svg)](https://gitter.im/shiva/ccl?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Jacob Navia created a [container library for C][0]. The library provides a framework for containers in C, and implements several common and some uncommon container types.  This repo is forked from Jacob Navia's [repo][0] to continue implementing a portable build system using CMake and to write cpputest based tests. There is extensive documentation provided to describe the [design of libccl][1].
