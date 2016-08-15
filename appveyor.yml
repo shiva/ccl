@@ -1,0 +1,17 @@
+version: 1.0.{build}
+branches:
+  only:
+  - cmake-support
+clone_depth: 1
+install:
+- ps: >-
+    cinst make -y
+
+    cinst cmake -version 3.1.1 -y
+build_script:
+- ps: >-
+    git submodule update --init --recursive
+
+    .\build.bat
+test_script:
+- ps: .\run-tests.bat
