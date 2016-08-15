@@ -15,6 +15,9 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_C_FLAGS "-Wall -Wno-pointer-sign -Werror")
+endif()
+
+if(UNIX)
     add_definitions(-DUNIX)
 endif()
 
@@ -23,8 +26,8 @@ enable_language(C)
 #enable_unit_testing()
 
 # The version number
-set (project_name_VERSION_MAJOR 0)
-set (project_name_VERSION_MINOR 1)
+set(project_name_VERSION_MAJOR 0)
+set(project_name_VERSION_MINOR 1)
 
 # output directories
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
@@ -99,6 +102,9 @@ set_target_properties(ccl PROPERTIES SOVERSION ${VERSION_MAJOR} VERSION ${VERSIO
 
 add_executable(dotest tests/test.c)
 target_link_libraries(dotest ccl)
+if (UNIX)
+    target_link_libraries(dotest m)
+endif()
 
 install(FILES ${CCL_HEADERS} ${PROJECT_BINARY_DIR}/ccl_export.h DESTINATION include/ccl)
 install(TARGETS ccl DESTINATION lib)
